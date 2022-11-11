@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
 import Review from "./Review";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const MyReviews = () => {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ const MyReviews = () => {
           console.log(data);
           const remaining = currentReviews.filter((d) => d._id !== data._id);
           setCurrentReviews(remaining);
+          toast.error("This didn't work.");
           navigate("/");
         });
     }

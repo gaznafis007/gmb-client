@@ -1,4 +1,26 @@
-# Getting Started with Create React App
+# A personal Business Single Page Application for gmb-Akash Photography
+
+# Feature of this site
+
+\*\*Deploy at firebase withe a vercel server
+
+# Feature of this app
+
+- This project is a Photography business Platform
+
+- It has Firebase Authentication
+
+- This project UI design with Daisy Ui and Tailwind css.
+
+- It has Active Route
+
+- There are 6 services
+
+- User can add and edit reviews and services
+
+- Client site Link: (https://onlearn-client.web.app/)
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
