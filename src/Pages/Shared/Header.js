@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
   const items = (
     <>
       <li className="mr-2 font-semibold">
