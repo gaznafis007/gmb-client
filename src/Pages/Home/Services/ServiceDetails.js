@@ -1,8 +1,10 @@
-import React from "react";
-import { FaStar } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
+import React, { useContext } from "react";
+import { FaArrowRight, FaStar } from "react-icons/fa";
+import { useLoaderData, Link } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthContext/AuthProvider";
 
 const ServiceDetails = () => {
+  const { user } = useContext(AuthContext);
   const serviceDetails = useLoaderData();
   console.log(serviceDetails);
   const { category, titleImg, description, price, rating } = serviceDetails;
@@ -38,6 +40,26 @@ const ServiceDetails = () => {
                   minus architecto ut!
                 </p>
               </div>
+            </div>
+            <div className="my-4 mx-auto">
+              {user?.uid ? (
+                <div className="form-control">
+                  <div className="input-group">
+                    <input
+                      type="text"
+                      placeholder="Write Your review"
+                      className="input input-bordered"
+                    />
+                    <button className="btn btn-square">
+                      <FaArrowRight />
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <Link to="/login" className="text-info">
+                  Sign In to write your review
+                </Link>
+              )}
             </div>
           </div>
         </div>

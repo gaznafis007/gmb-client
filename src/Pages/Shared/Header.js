@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
+import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user?.uid);
   const items = (
     <>
       <li className="mr-2 font-semibold">
@@ -55,12 +57,37 @@ const Header = () => {
         <ul className="menu menu-horizontal p-0">{items}</ul>
       </div>
       <div className="navbar-end">
-        <Link to="/register" className="btn btn-outline btn-info mr-2">
-          Register
-        </Link>
-        <Link to="/login" className="btn btn-outline btn-success ml-2">
-          Login
-        </Link>
+        {user?.uid ? (
+          <div className=" ">
+            {user?.photoURL ? (
+              <img
+                src={user?.photoURL}
+                className="w-10 rounded-full"
+                alt="user"
+              />
+            ) : (
+              <div className="flex justify-center items-center gap-4">
+                <p className="text-xl">{user.displayName}</p>
+                <FaUser className="p-1 border border-primary rounded-2xl text-4xl text-success"></FaUser>
+                <button
+                  onClick={() => logOut()}
+                  className="btn btn-outline btn-info"
+                >
+                  Sign Out
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <>
+            <Link to="/register" className="btn btn-outline btn-info mr-2">
+              Register
+            </Link>
+            <Link to="/login" className="btn btn-outline btn-success ml-2">
+              Login
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
