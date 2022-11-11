@@ -1,21 +1,24 @@
 import React, { useContext } from "react";
+import { GoogleAuthProvider } from "firebase/auth";
 import Lottie from "lottie-react";
 import signInAnimation from "./50124-user-profile.json";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
 import { useNavigate, useLocation } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
+  const { login, googleSignIn } = useContext(AuthContext);
+  const googleProvider = new GoogleAuthProvider();
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    // console.log(email, password);
     login(email, password)
       .then((result) => {
         const user = result.user;
@@ -23,6 +26,17 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .catch((error) => console.log(error.messages));
+  };
+  const handleGoogleSignIn = () => {
+    googleSignIn(googleProvider)
+      .then((res) => {
+        const user = res.user;
+        console.log(user);
+        navigate(from, { replace: true });
+      })
+      .then((error) => {
+        console.log(error.message);
+      });
   };
   return (
     <div className="hero min-h-screen bg-base-200 my-4">
@@ -63,6 +77,14 @@ const Login = () => {
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary">Login</button>
+            </div>
+            <div className="form-control mt-6">
+              <button
+                onClick={handleGoogleSignIn}
+                className="btn btn-outline btn-success"
+              >
+                <FaGoogle className="mr-2"></FaGoogle>Google Login
+              </button>
             </div>
           </form>
         </div>

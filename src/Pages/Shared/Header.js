@@ -5,6 +5,7 @@ import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
+  console.log(user?.displayName);
   const items = (
     <>
       <li className="mr-2 font-semibold">
@@ -59,11 +60,19 @@ const Header = () => {
         {user?.uid ? (
           <div className=" ">
             {user?.photoURL ? (
-              <img
-                src={user?.photoURL}
-                className="w-10 rounded-full"
-                alt="user"
-              />
+              <div className="flex justify-center items-center gap-4">
+                <img
+                  src={user?.photoURL}
+                  className="w-10 rounded-full"
+                  alt="user"
+                />
+                <button
+                  onClick={() => logOut()}
+                  className="btn btn-outline btn-info"
+                >
+                  Sign Out
+                </button>
+              </div>
             ) : (
               <div className="flex justify-center items-center gap-4">
                 <p className="text-xl">{user.displayName}</p>

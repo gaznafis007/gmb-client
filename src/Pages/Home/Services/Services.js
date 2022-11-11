@@ -3,6 +3,7 @@ import { AuthContext } from "../../../contexts/AuthContext/AuthProvider";
 import CardService from "./CardService";
 
 const Services = () => {
+  const { user } = useContext(AuthContext);
   const [services, setServices] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [dataLoading, setDataLoading] = useState(true);
@@ -47,6 +48,11 @@ const Services = () => {
       >
         {loaded ? "Show Less" : "Load All services"}
       </button>
+      {user?.uid ? (
+        <button className="btn btn-outline btn-primary"> Add service</button>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
