@@ -3,11 +3,28 @@ import CardService from "./CardService";
 
 const Services = () => {
   const [services, setServices] = useState([]);
+  const [loaded, setLoaded] = useState(false);
   useEffect(() => {
-    fetch("https://gmb-server.vercel.app/services")
+    fetch("https://gmb-server.vercel.app/services/limited")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
+  const handleLoadMore = () => {
+    fetch("https://gmb-server.vercel.app/services")
+      .then((res) => res.json())
+      .then((data) => {
+        setServices(data);
+        setLoaded(true);
+      });
+  };
+  const handleShowless = () => {
+    fetch("https://gmb-server.vercel.app/services/limited")
+      .then((res) => res.json())
+      .then((data) => {
+        setServices(data);
+        setLoaded(false);
+      });
+  };
   return (
     <div className="my-8">
       <h2 className="text-6xl text-blue-500 text-center">
@@ -18,8 +35,11 @@ const Services = () => {
           <CardService key={service._id} service={service}></CardService>
         ))}
       </div>
-      <button className="btn btn-primary my-6 mx-auto block">
-        Load All services
+      <button
+        onClick={loaded ? handleShowless : handleLoadMore}
+        className="btn btn-primary my-6 mx-auto block"
+      >
+        {loaded ? "Show Less" : "Load All services"}
       </button>
     </div>
   );
