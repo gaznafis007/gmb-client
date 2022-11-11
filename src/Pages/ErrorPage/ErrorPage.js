@@ -1,5 +1,5 @@
 import React from "react";
-import { useRouteError } from "react-router-dom";
+import { useRouteError, Link } from "react-router-dom";
 import errorAnimation from "./90333-error.json";
 import Lottie from "lottie-react";
 const ErrorPage = () => {
@@ -16,7 +16,10 @@ const ErrorPage = () => {
       <p className="text-red-500 text-center text-3xl my-4">
         {error.status}
         <br />
-        {error.statusText}
+        {error.statusText} <br />
+        <Link className="text-info" to="/">
+          Back to Home
+        </Link>
       </p>
     </div>
   );
