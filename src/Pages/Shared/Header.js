@@ -5,7 +5,6 @@ import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user?.uid);
   const items = (
     <>
       <li className="mr-2 font-semibold">

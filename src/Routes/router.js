@@ -2,6 +2,7 @@ import Main from "../layout/Main";
 import Home from "../Pages/Home/Home/Home";
 import ServiceDetails from "../Pages/Home/Services/ServiceDetails";
 import Login from "../Pages/Login/Login";
+import MyReviews from "../Pages/MyReviews/MyReviews";
 import PrivateRoute from "../Pages/Private/PrivateRoute";
 import Register from "../Pages/Register/Register";
 
@@ -21,6 +22,16 @@ export const router = createBrowserRouter([
         element: <ServiceDetails />,
         loader: ({ params }) =>
           fetch(`https://gmb-server.vercel.app/services/${params.id}`),
+      },
+      {
+        path: "/myreviews",
+        element: (
+          <PrivateRoute>
+            <MyReviews></MyReviews>
+          </PrivateRoute>
+        ),
+        // loader: ({ params }) =>
+        //   fetch(`https://gmb-server.vercel.app/reviews?uid=${params.uid}`),
       },
       {
         path: "/register",

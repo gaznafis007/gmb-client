@@ -21,7 +21,11 @@ const ServiceDetails = () => {
     const form = event.target;
     const comment = form.comment.value;
     const review = {
+      category,
+      titleImg,
+      myImg: user.photoURL,
       reviewId: _id,
+      uid: user.uid,
       userName: user.displayName,
       comment,
     };
@@ -82,6 +86,12 @@ const ServiceDetails = () => {
                       <FaArrowRight />
                     </button>
                   </form>
+                  <Link
+                    to="/myreviews"
+                    className="my-2 text-info font-semibold"
+                  >
+                    My reviews
+                  </Link>
                 </div>
               ) : (
                 <Link to="/login" className="text-info">
