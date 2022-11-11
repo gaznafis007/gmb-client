@@ -1,4 +1,5 @@
 import Main from "../layout/Main";
+import Blog from "../Pages/Blog/Blog";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home/Home";
 import AddService from "../Pages/Home/Services/AddService";
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
             <AddService></AddService>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
       },
     ],
   },

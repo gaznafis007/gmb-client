@@ -18,7 +18,7 @@ const Header = () => {
         <Link>Events</Link>
       </li>
       <li className="font-semibold">
-        <Link>Blog</Link>
+        <Link to="/blog">Blog</Link>
       </li>
     </>
   );
