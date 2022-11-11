@@ -3,19 +3,20 @@ import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
 import Review from "./Review";
 
 const MyReviews = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading, setLoading } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
+  const [reviewLoading, setReviewLoading] = useState(true);
   useEffect(() => {
     fetch(`https://gmb-server.vercel.app/reviews?uid=${user.uid}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setReviews(data);
+        setReviewLoading(false);
       });
-  }, [user]);
-  //   if (loading) {
-  //     return <h2 className="text-5xl font-semibold text-center">Loading....</h2>;
-  //   }
+  }, []);
+  console.log(user.uid);
+
   return (
     <div className="py-4">
       <h2 className="text-5xl mb-4 text-center">My reviews</h2>
@@ -37,7 +38,11 @@ const MyReviews = () => {
           <tbody>
             <Review></Review>
             {reviews.map((review) => (
-              <Review key={review._id} review={review}></Review>
+              <Review
+                key={review._id}
+                review={review}
+                reviewLoading={reviewLoading}
+              ></Review>
             ))}
           </tbody>
         </table>

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
 
-const Review = ({ review }) => {
-  console.log(review);
+const Review = ({ review, reviewLoading }) => {
+  if (reviewLoading) {
+    return <h2 className="text-2xl text-center font-semibold">Loading...</h2>;
+  }
   return (
     <tr>
       <td>
