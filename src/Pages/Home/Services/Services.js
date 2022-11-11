@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext/AuthProvider";
 import CardService from "./CardService";
 
@@ -49,7 +50,10 @@ const Services = () => {
         {loaded ? "Show Less" : "Load All services"}
       </button>
       {user?.uid ? (
-        <button className="btn btn-outline btn-primary"> Add service</button>
+        <button className="btn btn-outline btn-primary mx-auto block">
+          {" "}
+          <Link to="/addservice">Add service</Link>
+        </button>
       ) : (
         ""
       )}
