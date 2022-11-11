@@ -18,11 +18,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/services/:id",
-        element: (
-          <PrivateRoute>
-            <ServiceDetails />
-          </PrivateRoute>
-        ),
+        element: <ServiceDetails />,
         loader: ({ params }) =>
           fetch(`https://gmb-server.vercel.app/services/${params.id}`),
       },
