@@ -1,11 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const items = (
     <>
-      <li className="mr-2 font-semibold">Events</li>
-      <li className="mr-2 font-semibold">About</li>
-      <li className="font-semibold">Pricing</li>
+      <li className="mr-2 font-semibold">
+        <Link to="/">Home</Link>
+      </li>
+      <li className="mr-2 font-semibold">
+        <Link>About</Link>
+      </li>
+      <li className="font-semibold">
+        <Link>Events</Link>
+      </li>
+      <li className="font-semibold">
+        <Link>Blog</Link>
+      </li>
     </>
   );
   return (
@@ -35,14 +45,20 @@ const Header = () => {
             {items}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">GMB Akash</a>
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
+          GMB Akash
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{items}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn btn-outline btn-info mr-2">Login</a>
-        <a className="btn btn-outline btn-success ml-2">Signup</a>
+        <Link to="/register" className="btn btn-outline btn-info mr-2">
+          Register
+        </Link>
+        <Link to="/login" className="btn btn-outline btn-success ml-2">
+          Login
+        </Link>
       </div>
     </div>
   );
