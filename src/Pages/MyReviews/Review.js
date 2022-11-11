@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
+import { FaTrash } from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
 
-const Review = ({ review, reviewLoading }) => {
-  if (reviewLoading) {
-    return <h2 className="text-2xl text-center font-semibold">Loading...</h2>;
-  }
+const Review = ({ currentReview, handleDeleteReview }) => {
+  console.log(currentReview);
   return (
     <tr>
       <td>
@@ -14,8 +13,8 @@ const Review = ({ review, reviewLoading }) => {
               <img
                 className="w-10"
                 src={
-                  review?.titleImg
-                    ? review.titleImg
+                  currentReview?.titleImg
+                    ? currentReview.titleImg
                     : "https://www.analyticdesign.com/wp-content/uploads/2018/07/unnamed.gif"
                 }
                 alt="categoryImg"
@@ -24,13 +23,20 @@ const Review = ({ review, reviewLoading }) => {
           </div>
           <div>
             <div className="font-bold">
-              {review?.userName ? review.userName : "null"}
+              {currentReview?.userName ? currentReview.userName : "null"}
             </div>
           </div>
         </div>
       </td>
-      <td>{review?.comment ? review.comment : "no comment"}</td>
-      <td>{review?.category ? review.category : "no sections"}</td>
+      <td>{currentReview?.comment ? currentReview.comment : "no comment"}</td>
+      <td>
+        {currentReview?.category ? currentReview.category : "no sections"}
+      </td>
+      <td>
+        <button onClick={() => handleDeleteReview(currentReview)}>
+          <FaTrash />
+        </button>
+      </td>
     </tr>
   );
 };
