@@ -18,7 +18,7 @@
 
 - User can add and edit reviews and services
 
-- Client site Link: (https://onlearn-client.web.app/)
+- Client site Link: (https://gmb-client.web.app/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
